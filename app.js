@@ -25,8 +25,6 @@ app.use(express.static(path.join(__dirname, staticDir)));
 app.use('/', routes);
 app.use('/api', api);
 
-console.log(app.get('env'));
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');

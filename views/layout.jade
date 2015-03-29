@@ -2,15 +2,7 @@ doctype html
 html(ng-app="app")
     head
         title= title
-        //assets
-        script(src="/app/bower_components/angular/angular.js")
-        script(src="/app/bower_components/ui-router/release/angular-ui-router.js")
-        script(src="/app/src/app.js")
-        script(src="/app/src/home/home.js")
-        script(src="/app/src/profile/profile.js")
-        script(src="/app/src/templates.js")
-        link(rel="stylesheet" href="/app/css/app.css")
-        //end assets
+        include ./assets.jade
     body(ng-controller="AppCtrl as main")
         nav.navbar.navbar-inverse.navbar-fixed-top
             .container

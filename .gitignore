@@ -4,3 +4,4 @@ app/src/templates.js
 .*.sw[po]
 build
 dist
+views/assets.jade

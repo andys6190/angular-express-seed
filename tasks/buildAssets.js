@@ -49,9 +49,14 @@ module.exports = function(grunt) {
 		});
 
         if (dependencyDefinitions.length > 0) {
-            replaceLinesInFile(options.index, '//assets', '//end assets', dependencyDefinitions).then(function() {
+            if (options.replaceFile) {
+                fs.writeFile(options.index, dependencyDefinitions.join('\n'));
                 done();
-            });
+            } else {
+                replaceLinesInFile(options.index, '//assets', '//end assets', dependencyDefinitions).then(function() {
+                    done();
+                });
+            }
         }
 	});
 };

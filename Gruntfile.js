@@ -12,7 +12,8 @@ module.exports = function(grunt) {
                     js: 'script(src="/{filePath}")',
                     css: 'link(rel="stylesheet" href="/{filePath}")'
             	},
-                index: 'views/layout.jade'
+                index: 'views/assets.jade',
+                replaceFile: true
         	},
         	dev: {
         		assets: assets
@@ -123,7 +124,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build:prod', [
         'clean:prod',
-        'less:dev',
+        //'less:dev',
         'html2js:dev',
         'copy:prod',
         'uglify:prod',
