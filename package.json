@@ -19,6 +19,8 @@
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-copy": "^0.8.0",
     "grunt-contrib-less": "^1.0.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-html2js": "^0.3.0",
     "lodash": "^3.6.0",
     "q": "^1.2.0"
   }

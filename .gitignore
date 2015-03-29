@@ -1,2 +1,6 @@
 node_modules
 bower_components
+app/src/templates.js
+.*.sw[po]
+build
+dist

@@ -58,6 +58,25 @@ module.exports = function(grunt) {
                 }
             }
         },
+        html2js: {
+            options: {
+                module: 'templates',
+                base: 'app/src'
+            },
+            dev: {
+                src: ['app/src/**/*.tpl.html'],
+                dest: 'app/src/templates.js'
+            }
+        },
+        watch: {
+            assets: {
+                files: ['app/src/**/*', 'app/less/**/*'],
+                tasks: ['build:dev'],
+                options: {
+                    livereload: true
+                }
+            }
+        },
         clean: {
             dev: ['build'],
             prod: ['dist']
@@ -71,4 +90,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-html2js');
+
+    grunt.registerTask('build:dev', [
+        'clean:dev',
+        'less:dev',
+        'html2js:dev',
+        'copy:dev',
+        'buildAssets:dev'
+    ]);
 };
