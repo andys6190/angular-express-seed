@@ -14,20 +14,21 @@
                 }
             },
             resolve: {
+                user: getUser
             }
         });
     }
     config.$inject = ['$stateProvider'];
 
-    function profileCtrl() {
-        var vm = this;
-        vm.errors = [
-            {
-                message: 'hello'
-            },
-            {
-                message: 'world'
-            }
-        ];
+    function getUser($http) {
+        return $http.get('/api/user');
     }
+    getUser.$inject = ['$http'];
+
+    function profileCtrl(user) {
+        var vm = this;
+
+        vm.user = user;
+    }
+    profileCtrl.$inject = ['user'];
 })();

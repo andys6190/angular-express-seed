@@ -22,8 +22,8 @@ app.use(cookieParser());
 var staticDir = app.get('env') === 'development' ? 'build' : 'dist';
 app.use(express.static(path.join(__dirname, staticDir)));
 
-app.use('/', routes);
 app.use('/api', api);
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
