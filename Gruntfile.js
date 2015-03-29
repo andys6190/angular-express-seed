@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 
 module.exports = function(grunt) {
 	var assets = grunt.file.readJSON('assets.json');
@@ -30,22 +31,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        src: assets.js,
-                        dest: 'build'
-                    },
-                    {
-                        expand: true,
-                        src: assets.css,
-                        dest: 'build'
-                    },
-                    {
-                        expand: true,
-                        src: assets.img,
-                        dest: 'build'
-                    },
-                    {
-                        expand: true,
-                        src: assets.fonts,
+                        src: _.flatten(_.values(assets)),
                         dest: 'build'
                     }
                 ]
