@@ -124,7 +124,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build:prod', [
         'clean:prod',
-        //'less:dev',
+        'less:dev',
         'html2js:dev',
         'copy:prod',
         'uglify:prod',
