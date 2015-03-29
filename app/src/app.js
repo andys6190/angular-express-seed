@@ -15,6 +15,7 @@ function config($locationProvider) {
         requireBase: false
     });
 }
+config.$inject = ['$locationProvider'];
 
 function appCtrl() {
 

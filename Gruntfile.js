@@ -11,19 +11,20 @@ module.exports = function(grunt) {
             	templates: {
                     js: 'script(src="/{filePath}")',
                     css: 'link(rel="stylesheet" href="/{filePath}")'
-            	}
+            	},
+                index: 'views/layout.jade'
         	},
         	dev: {
-                options: {
-            	    index: 'views/layout.jade',
-                },
         		assets: assets
         	},
         	prod: {
-        		assets: assets,
-        		options: {
-        			minified: true
-        		}
+        		assets: {
+                    js: ['dist/app.min.js'],
+                    css: ['dist/app.min.css']
+                },
+                options: {
+                    ignoreRegex: '^dist\/',
+                }
         	}
         },
         copy: {
@@ -33,6 +34,15 @@ module.exports = function(grunt) {
                         expand: true,
                         src: _.flatten(_.values(assets)),
                         dest: 'build'
+                    }
+                ]
+            },
+            prod: {
+                files: [
+                    {
+                        expand: true,
+                        src: _.flatten(_.values(_.omit(assets, ['css', 'js']))),
+                        dest: 'dist'
                     }
                 ]
             }
@@ -52,6 +62,20 @@ module.exports = function(grunt) {
             dev: {
                 src: ['app/src/**/*.tpl.html'],
                 dest: 'app/src/templates.js'
+            }
+        },
+        uglify: {
+            prod: {
+                files: {
+                    'dist/app.min.js': assets.js
+                }
+            }
+        },
+        cssmin: {
+            prod: {
+                files: {
+                    'dist/app.min.css': assets.css
+                }
             }
         },
         watch: {
@@ -77,6 +101,8 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-html2js');
 
     grunt.registerTask('build:dev', [
@@ -85,5 +111,15 @@ module.exports = function(grunt) {
         'html2js:dev',
         'copy:dev',
         'buildAssets:dev'
+    ]);
+
+    grunt.registerTask('build:prod', [
+        'clean:prod',
+        'less:dev',
+        'html2js:dev',
+        'copy:prod',
+        'uglify:prod',
+        'cssmin:prod',
+        'buildAssets:prod'
     ]);
 };

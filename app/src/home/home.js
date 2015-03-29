@@ -16,6 +16,7 @@ function config($stateProvider) {
         }
     });
 }
+config.$inject = ['$stateProvider'];
 
 function homeCtrl() {
     var vm = this;
