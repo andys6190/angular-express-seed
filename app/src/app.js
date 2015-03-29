@@ -3,7 +3,8 @@ angular
     .module('app', [
         'ui.router',
         'templates',
-        'app.home'
+        'app.home',
+        'app.profile'
     ])
     .config(config)
     .controller('AppCtrl', appCtrl);
