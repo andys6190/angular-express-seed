@@ -28,7 +28,7 @@
     function profileCtrl(user) {
         var vm = this;
 
-        vm.user = user;
+        vm.user = user.data;
     }
     profileCtrl.$inject = ['user'];
 })();
