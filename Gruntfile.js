@@ -19,8 +19,8 @@ module.exports = function(grunt) {
         	},
         	prod: {
         		assets: {
-                    js: ['dist/app.min.js'],
-                    css: ['dist/app.min.css']
+                    js: ['dist/app.<%= pkg.version %>.min.js'],
+                    css: ['dist/app.<%= pkg.version %>.min.css']
                 },
                 options: {
                     ignoreRegex: '^dist\/',
@@ -67,14 +67,14 @@ module.exports = function(grunt) {
         uglify: {
             prod: {
                 files: {
-                    'dist/app.min.js': assets.js
+                    'dist/app.<%= pkg.version %>.min.js': assets.js
                 }
             }
         },
         cssmin: {
             prod: {
                 files: {
-                    'dist/app.min.css': assets.css
+                    'dist/app.<%= pkg.version %>.min.css': assets.css
                 }
             }
         },
@@ -84,6 +84,13 @@ module.exports = function(grunt) {
                 tasks: ['build:dev'],
                 options: {
                     livereload: true
+                }
+            }
+        },
+        bump: {
+            dev: {
+                options: {
+                    push: false
                 }
             }
         },
@@ -104,6 +111,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-html2js');
+    grunt.loadNpmTasks('grunt-bump');
 
     grunt.registerTask('build:dev', [
         'clean:dev',
