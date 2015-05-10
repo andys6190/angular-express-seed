@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        src: _.flatten(_.values(_.omit(assets, ['fonts']))),
+                        src: _.flatten(_.values(assets)),
                         dest: 'build'
                     },
                     {
