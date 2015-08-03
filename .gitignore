@@ -1,7 +1,7 @@
 node_modules
 bower_components
-app/src/templates.js
-app/src/css/app.css
+client/js/templates.js
+client/css/app.css
 .*.sw[po]
 build
 dist

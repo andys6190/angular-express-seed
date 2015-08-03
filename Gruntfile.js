@@ -20,8 +20,8 @@ module.exports = function(grunt) {
         	},
         	prod: {
         		assets: {
-                    js: ['dist/app.<%= pkg.version %>.min.js'],
-                    css: ['dist/app.<%= pkg.version %>.min.css']
+                    js: ['dist/client/app.<%= pkg.version %>.min.js'],
+                    css: ['dist/client/app.<%= pkg.version %>.min.css']
                 },
                 options: {
                     ignoreRegex: '^dist\/',
@@ -35,12 +35,6 @@ module.exports = function(grunt) {
                         expand: true,
                         src: _.flatten(_.values(assets)),
                         dest: 'build'
-                    },
-                    {
-                        expand: true,
-                        src: assets.fonts,
-                        flatten: true,
-                        dest: 'build/app/fonts'
                     }
                 ]
             },
@@ -48,7 +42,7 @@ module.exports = function(grunt) {
                 files: [
                     {
                         expand: true,
-                        src: _.flatten(_.values(_.omit(assets, ['css', 'js']))),
+                        src: _.flatten(_.values(_.omit(assets, ['css', 'js', 'tpl', 'less']))),
                         dest: 'dist'
                     }
                 ]
@@ -57,32 +51,33 @@ module.exports = function(grunt) {
         less: {
             dev: {
                 files: {
-                    'app/css/app.css': 'app/less/app.less'
+                    'client/css/app.css': assets.less
                 }
             }
         },
         html2js: {
             options: {
                 module: 'templates',
-                base: 'app/src'
+                base: 'client/js'
             },
             dev: {
-                src: ['app/src/**/*.tpl.html'],
-                dest: 'app/src/templates.js'
+                src: assets.tpl,
+                dest: 'client/js/templates.js'
             }
         },
         uglify: {
             prod: {
                 files: {
-                    'dist/app.<%= pkg.version %>.min.js': assets.js
+                    'dist/client/app.<%= pkg.version %>.min.js': assets.js
                 }
             }
         },
         cssmin: {
             prod: {
-                files: {
-                    'dist/app.<%= pkg.version %>.min.css': assets.css
-                }
+                files: [{
+                    src: assets.css,
+                    dest: 'dist/client/app.<%= pkg.version %>.min.css'
+                }]
             }
         },
         watch: {
