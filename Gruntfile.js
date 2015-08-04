@@ -20,8 +20,8 @@ module.exports = function(grunt) {
         	},
         	prod: {
         		assets: {
-                    js: ['dist/client/app.<%= pkg.version %>.min.js'],
-                    css: ['dist/client/app.<%= pkg.version %>.min.css']
+                    js: ['dist/client/js/app.<%= pkg.version %>.min.js'],
+                    css: ['dist/client/css/app.<%= pkg.version %>.min.css']
                 },
                 options: {
                     ignoreRegex: '^dist\/',
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
         uglify: {
             prod: {
                 files: {
-                    'dist/client/app.<%= pkg.version %>.min.js': assets.js
+                    'dist/client/js/app.<%= pkg.version %>.min.js': assets.js
                 }
             }
         },
@@ -76,7 +76,7 @@ module.exports = function(grunt) {
             prod: {
                 files: [{
                     src: assets.css,
-                    dest: 'dist/client/app.<%= pkg.version %>.min.css'
+                    dest: 'dist/client/css/app.<%= pkg.version %>.min.css'
                 }]
             }
         },
